@@ -40,7 +40,7 @@ pipeline {
               imagenDocker.push("$BUILD_NUMBER")
               imagenDocker.push('latest')
             }
-        }
+         }
       }
 
      
