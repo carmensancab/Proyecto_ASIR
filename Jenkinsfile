@@ -8,26 +8,24 @@ pipeline {
     }
     // Fases que va a realizar
     stages {
-     stage ('build'){
+     stage ('Construyendo Docker'){
         steps {
           echo "Construyendo la imagen docker..."
-           sh "docker build -t carmensancab/nodeweb ." 
+           sh "docker build -t nodeweb ." 
         }
       }
 
-      stage ('run'){
+      stage ('Ejecutar aplicacion Nodejs'){
         steps {
           echo "Ejecutar imagen docker"
-          sh "docker run -d -p 11631:11631 carmensancab/nodeweb"
+          sh "docker run -d -p 11631:11631 -rm nodeweb"
             }
       }
-      stage ('Test'){
+      stage ('Test funcionamiento'){
         steps {
           echo "Haciendo test sencillos de que todo funciona bien"
           echo "Node Version"
-          sh "npm -v" // Ver la version de nodejs, eso nos indicará que está arrancado
-          echo "Puerto por el que estás ejecutando"
-         
+          sh "npm -v" // Ver la version de nodejs, eso nos indicará que está arrancado  
          
         }
       }
