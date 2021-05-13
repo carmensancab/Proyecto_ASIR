@@ -3,8 +3,8 @@ pipeline {
     agent any
 
     environment {
-      regCredenciales= 'carmensancab'
-      imagenDocker = ''
+      regCredenciales= 'carmensancab/node'
+      imagenDocker = 'nodewebcsc'
     }
     // Fases que va a realizar
     stages {
@@ -48,7 +48,7 @@ pipeline {
   post { 
         always { 
             echo 'Borramos la imagen Docker para no saturar'
-            sh "docker stop container test"
+            sh "docker rm ${imagenDocker}"
         }
     }
 }
