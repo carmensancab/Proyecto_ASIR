@@ -11,7 +11,7 @@ pipeline {
      stage ('build'){
         steps {
           echo "Construyendo la imagen docker..."
-           sh "docker build -t nodeweb ." 
+           sh "docker build -t carmensancab/nodeweb ." 
         }
       }
 
