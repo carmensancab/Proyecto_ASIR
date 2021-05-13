@@ -4,7 +4,7 @@ pipeline {
 
     environment {
       regCredenciales= 'carmensancab/node'
-      imagenDocker = 'nodewebcsc'
+      imagenDocker = "$regCredenciales:v.$BUILD_NUMBER"
     }
     // Fases que va a realizar
     stages {
@@ -49,7 +49,7 @@ pipeline {
   post { 
         always { 
             echo 'Borramos la imagen Docker para no saturar'
-            sh "docker rm ${imagenDocker}"
+            sh "docker rm $imageDocker"
         }
     }
 }
