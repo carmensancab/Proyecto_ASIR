@@ -36,9 +36,10 @@ pipeline {
         steps {
           echo "Hacer push a DockerHub"
           script {
-            docker.withRegistry( '', regCredenciales ) {
-              imagenDocker.push("$BUILD_NUMBER")
-              imagenDocker.push('latest')
+            withCredentials([usuPasswd(credentialsId: 'Dockerhub',usernameVariable: 'password', passwordVariable: 'username')]){
+              sh "docker login -u $username -p $password"
+              sh "docker push $imagenDocker"
+              sh "docker logout"
             }
          }
         }
