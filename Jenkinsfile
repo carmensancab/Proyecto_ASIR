@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-      regCredenciales= 'carmensancab/node'
+      regCredenciales= 'carmensancab/nodeweb'
       imagenDocker = "$regCredenciales:v.$BUILD_NUMBER"
     }
     // Fases que va a realizar
