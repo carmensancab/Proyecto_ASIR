@@ -41,11 +41,8 @@ pipeline {
               imagenDocker.push('latest')
             }
          }
-      }
-
+        }
      
-    }
+      }
+  }
 }
-
-
-
