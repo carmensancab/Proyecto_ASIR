@@ -36,7 +36,7 @@ pipeline {
         steps {
           echo "Hacer push a DockerHub"
           script {
-            withCredentials([usernamePassword(credentialsId: 'Dockerhub',usernameVariable: 'username', passwordVariable: 'password')]){
+            withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'password', usernameVariable: 'username')]){
               sh "docker login -u $username -p $password"
               sh "docker push $imagenDocker"
               sh "docker logout"
