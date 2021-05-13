@@ -4,7 +4,7 @@ pipeline {
 
     environment {
       regCredenciales= 'carmensancab/nodeweb'
-      imagenDocker = "$regCredenciales"
+      imagenDocker = "$regCredenciales:v.$BUILD_NUMBER"
     }
     // Fases que va a realizar
     stages {
@@ -18,7 +18,7 @@ pipeline {
       stage ('run'){
         steps {
           echo "Ejecutar imagen docker"
-          sh "docker run -d -p 11631:11631 nodeweb"
+          sh "docker run -d -p 11631:11631 carmensancab/nodeweb"
             }
       }
       stage ('Test'){
