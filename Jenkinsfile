@@ -45,4 +45,10 @@ pipeline {
      
       }
   }
+  post { 
+        always { 
+            echo 'Borramos la imagen Docker para no saturar'
+            sh "docker stop container test"
+        }
+    }
 }
