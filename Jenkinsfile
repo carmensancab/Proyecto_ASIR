@@ -18,7 +18,7 @@ pipeline {
       stage ('run'){
         steps {
           echo "Ejecutar imagen docker"
-          sh "docker run -d -p 5000:5000 --name nodeweb"
+          sh "docker run -d -p 11631:11631 nodeweb"
             }
       }
       stage ('Test'){
