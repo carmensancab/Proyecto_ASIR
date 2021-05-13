@@ -18,7 +18,7 @@ pipeline {
       stage ('Ejecutar aplicacion Nodejs'){
         steps {
           echo "Ejecutar imagen docker"
-          sh "docker run -d -p 11631:11631 -rm nodeweb"
+          sh "docker run -d -p 11631:11631 --rm nodeweb"
             }
       }
       stage ('Test funcionamiento'){
