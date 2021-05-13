@@ -1,22 +1,51 @@
-/*pipeline {
+pipeline {
     /* insert Declarative Pipeline here */
-   // agent any
-    //stages {
-       // stage ('Realizar el build de mi contenedor Docker'){
-      //      echo "Hooollla Estamos haciendo pruebas"
-    //    }
-  //  }
-//}
+    agent any
 
-node {
+    environment {
+      regCredenciales= 'carmensancab'
+      imagenDocker = ''
+    }
+    // Fases que va a realizar
+    stages {
+     stage ('build'){
+        steps {
+          echo "Construyendo la imagen docker..."
+           sh "docker build -t nodeweb" 
+        }
+      }
 
-    checkout scm
+      stage ('run'){
+        steps {
+          echo "Ejecutar imagen docker"
+          sh "docker run -d -p 5000:5000 --name nodeweb"
+            }
+      }
+      stage ('Test'){
+        steps {
+          echo "Haciendo test sencillos de que todo funciona bien"
+          echo "Node Version"
+          sh "npm -v" // Ver la version de nodejs, eso nos indicará que está arrancado
+          echo "Puerto por el que estás ejecutando"
+          sh ""
+         
+        }
+      }
 
-    docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
+      stage ('Push'){
+        steps {
+          echo "Hacer push a DockerHub"
+          script {
+            docker.withRegistry( '', regCredenciales ) {
+              imagenDocker.push("$BUILD_NUMBER")
+              imagenDocker.push('latest')
+            }
+        }
+      }
 
-        def customImage = docker.build("carmensancab/nodeapp")
-
-        /* Push the container to the custom Registry */
-        customImage.push()
+     
     }
 }
+
+
+
