@@ -27,7 +27,7 @@ pipeline {
           echo "Node Version"
           sh "npm -v" // Ver la version de nodejs, eso nos indicará que está arrancado
           echo "Puerto por el que estás ejecutando"
-          sh ""
+         
          
         }
       }

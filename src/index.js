@@ -5,7 +5,7 @@ const path = require('path');
 //Configuraciones
 
 // Seleccionar en que puerto quiero que se ejecute el servidor web
-app.set('port', 8080);
+app.set('port', 5000);
 //
 app.set('views', path.join(__dirname, 'views'));
 //Poder poner scripts en la pagina index.html
