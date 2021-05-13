@@ -39,6 +39,7 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'password', usernameVariable: 'username')]){
               sh "docker login -u $username -p $password"
               sh "docker push $imagenDocker"
+              sh "docker tag $imagenDocker"
               sh "docker logout"
             }
          }
