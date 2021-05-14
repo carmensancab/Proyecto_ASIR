@@ -43,8 +43,8 @@ pipeline {
             }
          }
         }
-     
-      }
+
+        // Post
         post { 
         always { 
             echo 'Paramos la imagen Docker para no saturar'
@@ -53,6 +53,8 @@ pipeline {
              //sh "docker container stop $imagenDocker"
              //sh "docker container rmi $imagenDocker"
         }
+      }
+        
   }
 
     }
