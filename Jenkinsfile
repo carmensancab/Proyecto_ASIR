@@ -48,7 +48,7 @@ pipeline {
   post { 
         always { 
             echo 'Paramos la imagen Docker para no saturar'
-            sh "'docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')'"
+           // sh "docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')"
         }
     }
 }
