@@ -3,9 +3,9 @@ pipeline {
     agent any
 
     environment {
-      regCredenciales= 'carmensancab/nodeweb'
-      imagenDocker = "$regCredenciales:v.$BUILD_NUMBER"
-      pararDockerContainer = "${'docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')'}"
+      def regCredenciales= 'carmensancab/nodeweb'
+      def imagenDocker = "$regCredenciales:v.$BUILD_NUMBER"
+      def pararDockerContainer = "${'docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')'}"
     }
     // Fases que va a realizar
     stages {
