@@ -1,11 +1,11 @@
 pipeline {
-    /* insert Declarative Pipeline here */
+    /* Inserte los parametros y stages que debe de hacer nuestra pipeline */
     agent any
 
     environment {
       regCredenciales= 'carmensancab/nodeweb'
       imagenDocker = "$regCredenciales:v.$BUILD_NUMBER"
-      pararDockerContainer = "docker stop $(docker ps | grep "nodeweb" | awk '{print \$1}') 
+      pararDockerContainer = 'docker stop $(docker ps | grep "nodeweb" | awk '{print \$1}')'
     }
     // Fases que va a realizar
     stages {
@@ -49,7 +49,7 @@ pipeline {
   post { 
         always { 
             echo 'Paramos la imagen Docker para no saturar'
-            
+            sh "$pararDockerContainer"
              //sh "docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')"
         }
     }
