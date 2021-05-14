@@ -5,7 +5,7 @@ pipeline {
     environment {
       def regCredenciales= 'carmensancab/nodeweb'
       def imagenDocker = "$regCredenciales:v.$BUILD_NUMBER"
-      def pararDockerContainer = 'docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')'
+      
     }
     // Fases que va a realizar
     stages {
@@ -44,18 +44,19 @@ pipeline {
          }
         }
 
-        // Post
-        post { 
+    
+        }
+      } 
+            // Post
+      post { 
         always { 
             echo 'Paramos la imagen Docker para no saturar'
+            def pararDockerContainer = "${'docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')'}"
             sh "$pararDockerContainer"
              //sh "docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')"
              //sh "docker container stop $imagenDocker"
              //sh "docker container rmi $imagenDocker"
-        }
-      }
-        
-  }
 
-    }
-}
+        }
+      }  
+  }
