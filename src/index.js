@@ -6,7 +6,7 @@ const path = require('path');
 
 // Seleccionar en que puerto quiero que se ejecute el servidor web
 app.set('port', 11631);
-//
+//Directorios de donde coge las diferentes paginas web
 app.set('views', path.join(__dirname, 'views'));
 //Poder poner scripts en la pagina index.html
 app.engine('html', require('ejs').renderFile);
@@ -16,7 +16,7 @@ app.set('view engine','ejs')
 //rutas alas diferentes paginas web
 app.use(require('./rutas/index'));
 
-// Estaticos
+// Estaticos (Imágenes,css,videos, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // En que puerto arranca el servidor web
