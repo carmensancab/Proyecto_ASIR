@@ -13,14 +13,14 @@ pipeline {
      stage ('Construyendo Docker'){
         steps {
           echo "Construyendo la imagen docker..."
-           sh "docker build -t $imagenDocker --name $nameDocker ."  // Construir nuestra aplicacion
+           sh "docker build -t $imagenDocker ."  // Construir nuestra aplicacion
         }
       }
 
       stage ('Ejecutar aplicacion Nodejs'){
         steps {
           echo "Ejecutar imagen docker"
-          sh "docker run -d -p 11631:11631 --rm $imagenDocker" // Ejecutar la aplicacion y eliminar el contenedor una vez haya acabado
+          sh "docker run -d -p 11631:11631 --rm --name $nameDocker $imagenDocker" // Ejecutar la aplicacion y eliminar el contenedor una vez haya acabado
             }
       }
       stage ('Test funcionamiento'){
