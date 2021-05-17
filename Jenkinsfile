@@ -3,9 +3,9 @@ pipeline {
     agent any
 
     environment {
-      def regCredenciales= 'carmensancab/nodeweb'
+      def regCredenciales= 'carmensancab/nodeweb' 
       def imagenDocker = "$regCredenciales:v.$BUILD_NUMBER"
-      def nameDocker = "nodeCSC"
+      def nameDocker = "nodeCSC" // Etiqueta del nombre de la imagen docker que será utilizada para parar el contenedor
       
     }
     // Fases que va a realizar
@@ -43,10 +43,8 @@ pipeline {
             }
          }
         }
-
-    
         }
-      } 
+    } 
             // Post
       post { 
         always { 
