@@ -37,10 +37,9 @@ pipeline {
           echo "Hacer push a DockerHub"
           script {
             withCredentials([usernamePassword(credentialsId: 'Dockerhub', passwordVariable: 'password', usernameVariable: 'username')]){
-              sh "docker login -u $username -p $password"
-              sh "docker push $imagenDocker"
-            
-              sh "docker logout"
+              sh "docker login -u $username -p $password" // Nos logueamos en mi cuenta de Docker Hub
+              sh "docker push $imagenDocker" // Hacemos un push contra mi repositorio creado en DockerHub
+              sh "docker logout" //Nos deslogueamos de Docker Hub
             }
          }
         }
@@ -54,17 +53,9 @@ pipeline {
             echo 'Paramos la imagen Docker para no saturar'
 
             script {
-             // def pararDockerContainer = "${'docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')'}"
-             // sh "$pararDockerContainer"
-            sh "docker stop $nameDocker"
-          }
+              sh "docker stop $nameDocker" // Tan pronto termina de hacer push se para la aplicación
+            }
            
-            //
-            //$pararDockerContainer1
-             //sh "docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')"
-             //sh "docker container stop $imagenDocker"
-             //sh "docker container rmi $imagenDocker"
-
         }
       }  
   }
