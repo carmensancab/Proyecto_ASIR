@@ -5,6 +5,7 @@ pipeline {
     environment {
       def regCredenciales= 'carmensancab/nodeweb'
       def imagenDocker = "$regCredenciales:v.$BUILD_NUMBER"
+      def nameDocker = "nodeCSC"
       
     }
     // Fases que va a realizar
@@ -12,7 +13,7 @@ pipeline {
      stage ('Construyendo Docker'){
         steps {
           echo "Construyendo la imagen docker..."
-           sh "docker build -t $imagenDocker ."  // Construir nuestra aplicacion
+           sh "docker build -t $imagenDocker --name $nameDocker ."  // Construir nuestra aplicacion
         }
       }
 
@@ -53,9 +54,9 @@ pipeline {
             echo 'Paramos la imagen Docker para no saturar'
 
             script {
-              def pararDockerContainer = "docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')"
-              sh "$pararDockerContainer"
-            
+             // def pararDockerContainer = "${'docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')'}"
+             // sh "$pararDockerContainer"
+            sh "docker container stop $nameDocker"
           }
            
             //
@@ -67,4 +68,3 @@ pipeline {
         }
       }  
   }
-}
