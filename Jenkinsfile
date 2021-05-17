@@ -51,8 +51,8 @@ pipeline {
       post { 
         always { 
             echo 'Paramos la imagen Docker para no saturar'
-            def pararDockerContainer = "${'docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')'}"
-            sh "$pararDockerContainer"
+            //def pararDockerContainer = "${'docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')'}"
+            //sh "$pararDockerContainer"
              //sh "docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')"
              //sh "docker container stop $imagenDocker"
              //sh "docker container rmi $imagenDocker"
