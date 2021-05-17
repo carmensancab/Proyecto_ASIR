@@ -56,7 +56,7 @@ pipeline {
             script {
              // def pararDockerContainer = "${'docker stop $(docker ps | grep "nodeweb" | awk '{print $1}')'}"
              // sh "$pararDockerContainer"
-            sh "docker container stop $nameDocker"
+            sh "docker stop $nameDocker"
           }
            
             //
