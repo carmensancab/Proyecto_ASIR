@@ -9,3 +9,5 @@ RUN npm install
 COPY . .
 
 CMD [ "node", "src/index.js" ]
+
+EXPOSE  11631
